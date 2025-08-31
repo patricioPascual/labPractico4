@@ -4,6 +4,8 @@
  */
 package labpractico4;
 
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -44,23 +46,13 @@ public class VentanaInscripcion extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("FORMUARIO DE INSCRIPCION");
 
-        jLabel2.setText("ELIJA UNA MATERIA");
+        jLabel2.setText("Elija una Materia");
 
-        jLabel3.setText("ELIJA UN ALUMNO");
+        jLabel3.setText("Elija un Alumno");
 
         comboMateria.setEditable(true);
-        comboMateria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboMateriaActionPerformed(evt);
-            }
-        });
 
         comboAlumno.setEditable(true);
-        comboAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboAlumnoActionPerformed(evt);
-            }
-        });
 
         btnInscribir.setText("Inscribir");
         btnInscribir.addActionListener(new java.awt.event.ActionListener() {
@@ -82,13 +74,17 @@ public class VentanaInscripcion extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(69, 69, 69))
+                .addComponent(btnInscribir)
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir)
+                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnInscribir)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -96,16 +92,14 @@ public class VentanaInscripcion extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(btnSalir)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addGap(53, 53, 53)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(comboMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -113,64 +107,55 @@ public class VentanaInscripcion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(comboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInscribir)
                     .addComponent(btnSalir))
-                .addGap(15, 15, 15))
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void comboMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMateriaActionPerformed
-          
-    }//GEN-LAST:event_comboMateriaActionPerformed
-
-    private void comboAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAlumnoActionPerformed
-              
-    }//GEN-LAST:event_comboAlumnoActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirActionPerformed
-     Alumno alumnoActual=null;
-     Materia materiaActual=null;
-        for(Materia materia: ColegioFrame.vistaMateria){
-            if(materia.getNombre().equalsIgnoreCase((String)comboMateria.getSelectedItem())){
-                 materiaActual=materia;
-                
+        Alumno alumnoSeleccionado = (Alumno) comboAlumno.getSelectedItem();
+        Materia materiaSeleccionada = (Materia) comboMateria.getSelectedItem();
+
+        if (alumnoSeleccionado != null && materiaSeleccionada != null) {
+            if (alumnoSeleccionado.agregarMateria(materiaSeleccionada)) {
+                JOptionPane.showMessageDialog(this, 
+                    "Inscripcion exitosa: " + alumnoSeleccionado.getNombre() + 
+                    " en " + materiaSeleccionada.getNombre());
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                    "El alumno ya esta inscripto en esta materia");
             }
         }
-        for(Alumno alumno: ColegioFrame.vistaAlumnos){
-            if(alumno.getApellido().equalsIgnoreCase((String)comboAlumno.getSelectedItem())){
-                 alumnoActual= alumno;
-            }
-        }
-        alumnoActual.agregarMateria(materiaActual);
     }//GEN-LAST:event_btnInscribirActionPerformed
 
  
  public void actualizarComboAlumnos(){
      comboAlumno.removeAllItems();
      for (Alumno alumno : ColegioFrame.vistaAlumnos) {
-            comboAlumno.addItem(alumno.getApellido());
+            comboAlumno.addItem(alumno);
         }
  }
  public void actualizarComboMaterias(){
      comboMateria.removeAllItems();
      for(Materia materia : ColegioFrame.vistaMateria){
-         comboMateria.addItem(materia.getNombre());
+         comboMateria.addItem(materia);
      }
  }
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInscribir;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> comboAlumno;
-    private javax.swing.JComboBox<String> comboMateria;
+    private javax.swing.JComboBox<Alumno> comboAlumno;
+    private javax.swing.JComboBox<Materia> comboMateria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

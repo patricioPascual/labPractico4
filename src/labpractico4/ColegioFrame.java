@@ -5,13 +5,14 @@
 package labpractico4;
 
 import java.util.HashSet;
+import javax.swing.JInternalFrame;
 
 /**
  *
  * @author patri
  */
 public class ColegioFrame extends javax.swing.JFrame {
-  public static  HashSet<Alumno> vistaAlumnos;
+   public static  HashSet<Alumno> vistaAlumnos;
    public  static  HashSet<Materia> vistaMateria;
     /**
      * Creates new form ColegioFrame
@@ -74,11 +75,11 @@ public class ColegioFrame extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 588, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 309, Short.MAX_VALUE)
+            .addGap(0, 415, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
@@ -148,14 +149,15 @@ public class ColegioFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(escritorio)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(escritorio)
                 .addContainerGap())
         );
 
@@ -167,23 +169,30 @@ public class ColegioFrame extends javax.swing.JFrame {
        VentanaAlumno ventAlumno= new VentanaAlumno();
        escritorio.add(ventAlumno);
        ventAlumno.setVisible(true);
-       
+       centrarInternalFrame(ventAlumno);
     }//GEN-LAST:event_menuAlumnoActionPerformed
 
     private void menuMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMateriaActionPerformed
         VentanaMateria ventMateria= new VentanaMateria();
         escritorio.add(ventMateria);
         ventMateria.setVisible(true);
+        centrarInternalFrame(ventMateria);
     }//GEN-LAST:event_menuMateriaActionPerformed
 
     private void menuInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInscripcionActionPerformed
-        VentanaInscripcion ventIns= new VentanaInscripcion();
-        
-        escritorio.add(ventIns);
-        
-        ventIns.setVisible(true);
+        VentanaInscripcion ventIns= new VentanaInscripcion();        
+        escritorio.add(ventIns);        
+        ventIns.setVisible(true);       
+        centrarInternalFrame(ventIns);
     }//GEN-LAST:event_menuInscripcionActionPerformed
 
+    private void centrarInternalFrame(JInternalFrame internalFrame) {
+        // Centrar el internal frame en el escritorio
+        int x = (escritorio.getWidth() - internalFrame.getWidth()) / 2;
+        int y = (escritorio.getHeight() - internalFrame.getHeight()) / 2;
+        internalFrame.setLocation(x, y);
+    }
+    
     private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
         // TODO add your handling code here:
         int opcion = javax.swing.JOptionPane.showConfirmDialog(
@@ -272,12 +281,13 @@ public class ColegioFrame extends javax.swing.JFrame {
             }
         });
     }
-  public static void agregarMateria(Materia materia){
-      vistaMateria.add(materia);
-  }
-          public static void agregarAlumno(Alumno alumno){
-              vistaAlumnos.add(alumno);
-          }
+    public static void agregarMateria(Materia materia) {
+        vistaMateria.add(materia);
+    }
+
+    public static void agregarAlumno(Alumno alumno) {
+        vistaAlumnos.add(alumno);
+    }
           
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -48,11 +48,15 @@ public class Alumno {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public void agregarMateria(Materia materia) {
+    
+    //Lo converti en boolean para que no se repitan las materias y que funcione bien la inscripcion
+    public boolean agregarMateria(Materia materia) {
+    if (!materias.contains(materia)) {
         materias.add(materia);
-
+        return true; 
     }
+    return false;
+}
 
     public void cantidadMaterias() {
         int contador = 0;
@@ -64,5 +68,10 @@ public class Alumno {
         for (Materia aux : materias) {
             System.out.println(aux.toString());
         }
+    }
+    
+    @Override
+    public String toString() {
+        return apellido + " " + nombre;
     }
 }
