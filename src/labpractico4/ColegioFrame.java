@@ -74,7 +74,7 @@ public class ColegioFrame extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +132,11 @@ public class ColegioFrame extends javax.swing.JFrame {
         menus.setText("Salir");
 
         menuSalir.setText("Salir");
+        menuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSalirActionPerformed(evt);
+            }
+        });
         menus.add(menuSalir);
 
         jMenuBar1.add(menus);
@@ -142,8 +147,7 @@ public class ColegioFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(escritorio)
                 .addContainerGap())
         );
@@ -180,12 +184,65 @@ public class ColegioFrame extends javax.swing.JFrame {
         ventIns.setVisible(true);
     }//GEN-LAST:event_menuInscripcionActionPerformed
 
+    private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
+        // TODO add your handling code here:
+        int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                this,
+                "¿Seguro que querés Salir?",
+                "Confirmar Salida",
+                javax.swing.JOptionPane.YES_NO_OPTION,
+                javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
+        
+        if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+            // Para ocultar la ventana pero dejar el programa corriendo.
+            // this.setVisible(false);
+            
+            //Para cerrar la aplicación completamente:
+            //System.exit(0);
+            
+            //Para liberar recursos y cerrar sólo esta ventana:
+            this.dispose();
+            
+            
+        }
+    }//GEN-LAST:event_menuSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+           Alumno lopez= new Alumno(1001,"Lopez","Martin");
+           Alumno martinez= new Alumno (1002,"Martinez","Brenda");
+           
+           Materia laboratorio= new Materia("Laboratorio 1",100,1 );
+           Materia matematicas= new Materia("Matematicas",102,1);
+           Materia web= new Materia("Web 2",104,2);
+           
+           lopez.agregarMateria(matematicas);
+           lopez.agregarMateria(laboratorio);
+           lopez.agregarMateria(web);
+           martinez.agregarMateria(matematicas);
+           martinez.agregarMateria(laboratorio);
+           martinez.agregarMateria(web);
+           martinez.agregarMateria(laboratorio);   
+           
+           lopez.cantidadMaterias();
+           martinez.cantidadMaterias();
+           
+           try {
+               for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                   if ("Nimbus".equals(info.getName())) {
+                       
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                        }
+                   }
+               
+               } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+                   java.util.logging.Logger.getLogger(ColegioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                   }//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -209,6 +266,7 @@ public class ColegioFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new ColegioFrame().setVisible(true);
             }
