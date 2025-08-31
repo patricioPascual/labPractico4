@@ -204,13 +204,7 @@ public class ColegioFrame extends javax.swing.JFrame {
         );
         
         if (opcion == javax.swing.JOptionPane.YES_OPTION) {
-            // Para ocultar la ventana pero dejar el programa corriendo.
-            // this.setVisible(false);
             
-            //Para cerrar la aplicación completamente:
-            //System.exit(0);
-            
-            //Para liberar recursos y cerrar sólo esta ventana:
             this.dispose();
             
             
