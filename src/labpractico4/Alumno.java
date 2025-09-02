@@ -17,6 +17,10 @@ public class Alumno {
     private String nombre;
     private HashSet<Materia> materias;
 
+    public HashSet<Materia> getMaterias() {
+        return materias;
+    }
+
     public Alumno(int nroLegajo, String apellido, String nombre) {
         this.nroLegajo = nroLegajo;
         this.apellido = apellido;

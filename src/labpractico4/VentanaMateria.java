@@ -4,6 +4,8 @@
  */
 package labpractico4;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author patri
@@ -140,10 +142,19 @@ public class VentanaMateria extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       int anio= Integer.parseInt(txtAnioMateria.getText());
+        try{
+        int anio= Integer.parseInt(txtAnioMateria.getText());
        int id=Integer.parseInt(txtCodigoMateria.getText());
+       String nombre=txtNombreMateria.getText().trim();
+       if(nombre.matches(".*[0-9!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~].*")){ 
+           JOptionPane.showMessageDialog(this, "el nombre solo puede contener letras");
+       }else{
         Materia nuevaMateria= new Materia(txtNombreMateria.getText(),id,anio);
        ColegioFrame.agregarMateria(nuevaMateria);
+       }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Codigo y año deben ser un numero");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtNombreMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMateriaActionPerformed
