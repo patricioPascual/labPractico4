@@ -157,13 +157,16 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Complete todos los campos");
                 return;
             }
-
+             if(nombre.matches(".*[0-9!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~].*")||apellido.matches(".*[0-9!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~].*") ){ 
+           JOptionPane.showMessageDialog(this, "nombre y apellido solo pueden contener letras");
+       }else{
             Alumno nuevoAlumno = new Alumno(legajo, apellido, nombre);
             if (ColegioFrame.vistaAlumnos.add(nuevoAlumno)) {
                 JOptionPane.showMessageDialog(this, "Alumno agregado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "El legajo ya existe");
             }
+             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Legajo debe ser un numero");
         }
