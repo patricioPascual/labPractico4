@@ -12,8 +12,8 @@ import javax.swing.JInternalFrame;
  * @author patri
  */
 public class ColegioFrame extends javax.swing.JFrame {
-   public static  HashSet<Alumno> vistaAlumnos;
-   public  static  HashSet<Materia> vistaMateria;
+     static  HashSet<Alumno> vistaAlumnos;
+    static  HashSet<Materia> vistaMateria;
     /**
      * Creates new form ColegioFrame
      */
